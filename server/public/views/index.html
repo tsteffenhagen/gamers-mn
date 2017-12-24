@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Solo Project</title>
+    <!-- STYLES -->
+    <link rel="stylesheet" href="styles/style.css">
+
+
+    <!-- VENDORS -->
+    <script src="vendors/moment/moment.js"></script>
+    <script src="vendors/interact.js"></script>
+    <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
+    <script src="vendors/angular-animate/angular-animate.js"></script>
+    <script src="vendors/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="vendors/rrule/lib/rrule.js"></script>
+    <script src="vendors/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
+    <script src="vendors/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.js"></script>
+    <link href="vendors/bootstrap.css" rel="stylesheet">
+    <link href="vendors/angular-bootstrap-colorpicker/css/colorpicker.min.css" rel="stylesheet">
+    <link href="vendors/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+    <script type="text/javascript" src="vendors/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="scripts/client.js"></script>
+
+
+    <!-- CONTROLLERS -->
+    <script type="text/javascript" src="scripts/controllers/info.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/login.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/user.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/calendar.controller.js"></script>
+    <script src="scripts/helpers.js"></script>
+
+
+    <!-- SERVICES -->
+    <script type="text/javascript" src="scripts/services/user.service.js"></script>
+    <script type="text/javascript" src="scripts/services/calendar.service.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+    <header ng-include="'/views/partials/header.html'"></header>
+
+    <main ng-view></main>
+
+</body>
+
+</html>
