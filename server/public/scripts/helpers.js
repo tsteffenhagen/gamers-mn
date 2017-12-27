@@ -3,7 +3,7 @@ myApp.factory('alert', function($uibModal) {
     function show(action, event) {
       if (action === 'NewEventClicked') {
       return $uibModal.open({
-        templateUrl: '/views/templates/newModalContent.html',
+        templateUrl: '/views/modals/newModalContent.html',
         controller: function() {
           var vm = this;
           vm.action = action;
@@ -13,7 +13,7 @@ myApp.factory('alert', function($uibModal) {
       });
       } else {
       return $uibModal.open({
-        templateUrl: '/views/templates/modalContent.html',
+        templateUrl: '/views/modals/eventContent.html',
         controller: function() {
           var vm = this;
           vm.action = action;
