@@ -2,8 +2,7 @@ myApp.service('CalendarService', function ($http, $location) {
     console.log('CalendarService Loaded');
     var self = this;
 
-    self.eventObjects = [
-    ];
+    self.eventObjects = [];
 
 
 
@@ -44,7 +43,7 @@ myApp.service('CalendarService', function ($http, $location) {
                 console.log(`result at ${i}`);
                 
             }
-
+        return self.eventObjects;
         })
     }
 

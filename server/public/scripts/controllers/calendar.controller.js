@@ -9,7 +9,6 @@ myApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, Cal
     vm.viewDate = new Date();
 
     CalendarService.getEvents();
-    vm.events = CalendarService.eventObjects;
     vm.addEvent = CalendarService.addEvent
     vm.addnewEvent = CalendarService.addnewEvent
 
