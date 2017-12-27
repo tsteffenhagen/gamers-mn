@@ -1,16 +1,19 @@
-myApp.controller('ProfileController', function (moment, alert, calendarConfig, CalendarService) {
-
+myApp.controller('ProfileController', function (moment, alert, calendarConfig, CalendarService, GameService) {
 
     var vm = this;
 
-
+    
     vm.CalendarService = CalendarService;
     vm.calendarView = 'month';
     vm.viewDate = new Date();
-
+    
     CalendarService.getEvents();
     vm.addEvent = CalendarService.addEvent
     vm.addnewEvent = CalendarService.addnewEvent
+    // vm.addNewGame = GameService.addNewGame
+    vm.addNewGame = function (event) {
+        alert.show('NewEventClicked', event);
+    };
 
     var actions = [{
         label: '<i class=\'glyphicon glyphicon-pencil\'></i>',

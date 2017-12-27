@@ -9,6 +9,9 @@
     <div class="col-md-4 text-center view">
         <h2> USER</h2>
         <img src="../views/images/a1.jpg" id="displayPicture">
+        <br>
+        <h3>GAMES</h3>
+        <button class="btn-default" ng-click="vm.addNewGame()"> Add a game</button>
     </div>
 
     <div class="col-md-8 view">
@@ -47,10 +50,19 @@
 
         <br>
 
-        <mwl-calendar events="vm.CalendarService.eventObjects" view="vm.calendarView" view-title="vm.calendarTitle" view-date="vm.viewDate"
-            on-event-click="vm.eventClicked(calendarEvent)" on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-            cell-is-open="vm.cellIsOpen" day-view-start="06:00" day-view-end="22:59" day-view-split="30" cell-modifier="vm.modifyCell(calendarCell)"
-            cell-auto-open-disabled="true" on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
+        <mwl-calendar events="vm.CalendarService.eventObjects" 
+                      view="vm.calendarView" 
+                      view-title="vm.calendarTitle"
+                      view-date="vm.viewDate"
+                      on-event-click="vm.eventClicked(calendarEvent)"
+                      on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+                      cell-is-open="vm.cellIsOpen"
+                      day-view-start="06:00"
+                      day-view-end="22:59"
+                      day-view-split="30"
+                      cell-modifier="vm.modifyCell(calendarCell)"
+                      cell-auto-open-disabled="true"
+                      on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
         </mwl-calendar>
     </div>
 </div>
