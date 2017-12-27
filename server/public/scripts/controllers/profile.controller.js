@@ -1,4 +1,4 @@
-myApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, CalendarService) {
+myApp.controller('ProfileController', function (moment, alert, calendarConfig, CalendarService) {
 
 
     var vm = this;

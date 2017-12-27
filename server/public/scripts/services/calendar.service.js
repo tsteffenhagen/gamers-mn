@@ -40,7 +40,6 @@ myApp.service('CalendarService', function ($http, $location) {
                     draggable: true,
                     resizable: true
                 })
-                console.log(`result at ${i}`);
                 
             }
         return self.eventObjects;

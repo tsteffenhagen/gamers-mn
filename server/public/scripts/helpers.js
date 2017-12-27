@@ -2,7 +2,7 @@ myApp.factory('alert', function($uibModal) {
 
     function show(action, event) {
       return $uibModal.open({
-        templateUrl: 'modalContent.html',
+        templateUrl: '/views/templates/modalContent.html',
         controller: function() {
           var vm = this;
           vm.action = action;

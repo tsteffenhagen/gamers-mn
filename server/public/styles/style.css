@@ -78,3 +78,28 @@ li a:hover {
   text-decoration: underline;
   color: #eee;
 }
+
+
+body {
+  margin: 0px;
+}
+
+.view{
+  border: 2px solid red;
+  border-radius: 5px;
+}
+
+#displayPicture {
+  height: 150px;
+  width: 120px;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}

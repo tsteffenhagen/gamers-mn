@@ -38,6 +38,15 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/profile', {
+      templateUrl: '/views/templates/profile.html',
+      controller: 'ProfileController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });
