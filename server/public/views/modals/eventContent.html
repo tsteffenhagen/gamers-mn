@@ -9,23 +9,24 @@
         <pre>{{ vm.event | json }}</pre> -->
     </p>
     <form>
-            Event Title:<br>
-            <input type="text" value={{vm.event.title}}>
-            <br>
-            Starts at:<br>
-            <input type="date" value={{vm.event.startsAt}}>{{vm.event.startsAt}}
-            <br>
-            Ends at:<br>
-            <input type="date" value={{vm.event.endsAt}}>{{vm.event.endsAt}}
-            <br>
-            Color:<br>
-            <input colorpicker type="text" ng-model="event.color.primary">{{vm.event.color.primary}}
-            <br>
-            
-            <br>
-            <input type="submit" value="Submit">
+        Event Title:
+        <br>
+        <input type="text" value={{vm.event.title}}>
+        <br> Starts at:
+        <br>
+        <input type="date" ng-model="vm.event.startsAt">
+        <br> Color:
+        <br>
+        <input colorpicker type="text" ng-model="vm.event.color">
+        <br>
+
+        <br>
+        <button class="btn btn-default" ng-click="vm.editEvent(vm.event)">Save Changes</button>
     </form>
+    {{vm.event}}
 </div>
 <div class="modal-footer">
+    <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.event); $close()">Delete Event</button>
+
     <button class="btn btn-primary" ng-click="$close()">OK</button>
 </div>

@@ -7,13 +7,12 @@ var path = require('path');
 router.get('/', function (req, res) {
 
     userId = req.user.id
-    console.log('user data is as follow ', req.user.id);
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT "events"."title", "events"."color", "events"."month", "events"."day"
+            client.query(`SELECT "events"."title", "events"."color", "events"."month", "events"."day", "users_events"."id", "events"."id" AS "eventId"
             FROM "events" JOIN "users_events"
             ON "events"."id" = "users_events"."event_id"
             WHERE "users_events"."user_id" = ${userId};`, function (errorMakingDatabaseQuery, result) {
@@ -52,6 +51,51 @@ router.post('/', function (req, res) {
                 })
         }
     })
+});
+
+router.put('/', function (req, res) {
+    var editEvent = req.body;
+    console.log(editEvent);
+    
+
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`UPDATE events SET title=$1, color=$2 WHERE id=$3;`, [editEvent.title, editEvent.color, editEvent.editId],
+                function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                })
+        }
+    })
+});
+
+router.delete('/', function (req, res) {  
+    var eventToRemove = req.query;
+
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`DELETE FROM users_events WHERE id=$1`, [eventToRemove.deleteId],
+                function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+        }
+    });
 });
 
 module.exports = router;
