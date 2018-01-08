@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT "events"."title", "events"."color", "events"."month", "events"."day", "users_events"."id", "events"."id" AS "eventId"
+            client.query(`SELECT "events"."title", "events"."color", "events"."starts_at", "events"."ends_at", "users_events"."id", "events"."id" AS "eventId"
             FROM "events" JOIN "users_events"
             ON "events"."id" = "users_events"."event_id"
             WHERE "users_events"."user_id" = ${userId};`, function (errorMakingDatabaseQuery, result) {
@@ -37,10 +37,10 @@ router.post('/', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`WITH new_event AS (INSERT INTO events ("title", "color", "month", "day")
+            client.query(`WITH new_event AS (INSERT INTO events ("title", "color", "starts_at", "ends_at")
             VALUES ($1, $2, $3, $4) RETURNING id)            
             INSERT INTO users_events ("user_id", "event_id")
-            VALUES ($5, (Select id FROM new_event));;`, [newEvent.title, newEvent.color, newEvent.month, newEvent.day, userId],
+            VALUES ($5, (Select id FROM new_event));;`, [newEvent.title, newEvent.color, newEvent.startDateTime, newEvent.endDateTime, userId],
                 function (errorMakingDatabaseQuery, result) {
                     done();
                     if (errorMakingDatabaseQuery) {

@@ -2,9 +2,11 @@ myApp.controller('EventController', function(GameService, $http, $location) {
     console.log('EventController created');
     var vm = this;
 
-    vm.action = action;
-
+    vm.action = action
     vm.event = event;
+
+    console.log(event);
+    
     vm.editDate = function (date) {
       var editedDate = new Date(date)
       console.log(editedDate);

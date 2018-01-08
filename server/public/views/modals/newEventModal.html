@@ -13,11 +13,11 @@
            Color:<br>
             <input type="text" ng-model="vm.newEvent.color">
             <br>
-            month:<br>
-             <input type="number" ng-model="vm.newEvent.month">
+            Starts At:<br>
+            <input type="datetime-local" ng-model="vm.newEvent.startDateTime">
              <br>
-             day:<br>
-              <input type="number" ng-model="vm.newEvent.day">
+             Ends At:<br>
+             <input type="datetime-local" ng-model="vm.newEvent.endDateTime">
               <br>
               <button class="btn btn-default" ng-click="vm.addNewEvent(vm.newEvent)">add new event</button>
           </div>

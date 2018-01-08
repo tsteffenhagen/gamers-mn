@@ -14,7 +14,7 @@
         <input type="text" ng-model="vm.event.title">
         <br> Starts at:
         <br>
-        <input type="date" ng-model="vm.event.realDate">
+        <input type="datetime-local" ng-model="vm.event.startsAt">
         <br> Color:
         <br>
         <input colorpicker type="text" ng-model="vm.event.color.primary">
@@ -23,6 +23,7 @@
         <br>
         <button class="btn btn-default" ng-click="vm.editEvent(vm.event)">Save Changes</button>
     </form>
+
 </div>
 <div class="modal-footer">
     <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.event); $close()">Delete Event</button>
