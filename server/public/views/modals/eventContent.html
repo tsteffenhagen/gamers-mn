@@ -11,13 +11,13 @@
     <form>
         Event Title:
         <br>
-        <input type="text" value={{vm.event.title}}>
+        <input type="text" ng-model="vm.event.title">
         <br> Starts at:
         <br>
-        <input type="date" ng-model="vm.event.startsAt">
+        <input type="date" ng-model="vm.event.realDate">
         <br> Color:
         <br>
-        <input colorpicker type="text" ng-model="vm.event.color">
+        <input colorpicker type="text" ng-model="vm.event.color.primary">
         <br>
 
         <br>

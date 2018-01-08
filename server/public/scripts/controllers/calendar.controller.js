@@ -10,7 +10,11 @@ myApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, Cal
 
     CalendarService.getEvents();
     vm.addEvent = CalendarService.addEvent
-    vm.addnewEvent = CalendarService.addnewEvent
+
+    //Opens Modal for adding a new event
+    vm.addNewEvent = function (event) {
+        alert.show('NewEventClicked', event);
+    };
 
     var actions = [{
         label: '<i class=\'glyphicon glyphicon-pencil\'></i>',

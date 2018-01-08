@@ -12,7 +12,7 @@ myApp.controller('ProfileController', function (moment, alert, calendarConfig, C
     vm.addnewEvent = CalendarService.addnewEvent
     // vm.addNewGame = GameService.addNewGame
     vm.addNewGame = function (event) {
-        alert.show('NewEventClicked', event);
+        alert.show('NewGameClicked', event);
     };
 
     var actions = [{

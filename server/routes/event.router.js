@@ -63,7 +63,7 @@ router.put('/', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`UPDATE events SET title=$1, color=$2 WHERE id=$3;`, [editEvent.title, editEvent.color, editEvent.editId],
+            client.query(`UPDATE events SET title=$1, color=$2, real_date=$3 WHERE id=$4;`, [editEvent.title, editEvent.color.primary, editEvent.realDate, editEvent.editId],
                 function (errorMakingDatabaseQuery, result) {
                     done();
                     if (errorMakingDatabaseQuery) {

@@ -1,15 +1,15 @@
 myApp.factory('alert', function ($uibModal) {
 
   function show(action, event) {
-    if (action === 'NewEventClicked') {
+    if (action === 'NewGameClicked') {
       return $uibModal.open({
         templateUrl: '/views/modals/newGameModal.html',
-        controller: function () {
-          var vm = this;
-          vm.action = action;
-          vm.event = event;
-        },
-        controllerAs: 'vm'
+        controller: 'NewGameController as vm'
+      });
+    } else if (action === 'NewEventClicked') {
+      return $uibModal.open({
+        templateUrl: '/views/modals/newEventModal.html',
+        controller: 'NewEventController as vm'
       });
     } else {
       return $uibModal.open({
@@ -42,10 +42,6 @@ myApp.factory('alert', function ($uibModal) {
               console.log('response', response);
             })
           };
-
-
-
-
 
           vm.deleteEvent = function (dateToRemove) {
             console.log(dateToRemove);

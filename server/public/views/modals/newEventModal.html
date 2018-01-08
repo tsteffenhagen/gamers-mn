@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h3 class="modal-title">Event action occurred!</h3>
+</div>
+<div class="modal-body">
+    <p>Action:
+        <pre>New Event</pre>
+    </p>
+    <p>Event:
+        <div>
+            Event Title:<br>
+            <input type="text" ng-model="vm.newEvent.title">
+            <br>
+           Color:<br>
+            <input type="text" ng-model="vm.newEvent.color">
+            <br>
+            month:<br>
+             <input type="number" ng-model="vm.newEvent.month">
+             <br>
+             day:<br>
+              <input type="number" ng-model="vm.newEvent.day">
+              <br>
+              <button class="btn btn-default" ng-click="vm.addNewEvent(vm.newEvent)">add new event</button>
+          </div>
+    </p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="$close()">OK</button>
+</div>

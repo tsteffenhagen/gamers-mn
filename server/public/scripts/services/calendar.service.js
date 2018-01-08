@@ -34,7 +34,7 @@ myApp.service('CalendarService', function ($http, $location) {
             for (let i = 0; i < response.data.length; i++) {
                 self.eventObjects.push({
                     title: `${response.data[i].title}`,
-                    startsAt: new Date(2018, (response.data[i].month - 1), (response.data[i].day), 12),
+                    startsAt: new Date(response.data[i].real_date),
                     endsAt: new Date(2018, (response.data[i].month - 1), (response.data[i].day), 23),
                     color: { primary: response.data[i].color },
                     draggable: true,
@@ -48,7 +48,7 @@ myApp.service('CalendarService', function ($http, $location) {
         })
     }
 
-    self.addnewEvent = function (newEvent) {
+    self.addNewEvent = function (newEvent) {
         console.log(newEvent);
 
         $http({
