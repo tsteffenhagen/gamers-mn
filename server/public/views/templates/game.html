@@ -1,37 +1,60 @@
 <div ng-include="'views/partials/nav.html'"></div>
+<div class="row">
 
-<button class="btn btn-primary" ng-click="vm.addNewGame()">Create a Game</button>
+    <div class="col-sm-4">
+        <h3 class="text-center">My Games</h3>
+        <table class="table">
 
-<div>
-    <h3 class="text-center">Games</h3>
-    <input class="form-control" type="text" ng-model="gameSearch" placeholder="Search for a Game" />
-    <table class="table">
+            <thead>
+                <tr>
+                    <th>Game Name</th>
+                </tr>
+            </thead>
 
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Game Type</th>
-                <th>Game Creator</th>
-                <th>Players</th>
-                <th>Duration</th>
-                <th>Add to my Collection</th>
-            </tr>
-        </thead>
+            <tbody>
+                <tr ng-repeat="game in vm.gameCollectionArray.list">
+                    <td>{{game.name}}</td>
+                </tr>
+            </tbody>
 
-        <tbody>
-            <tr ng-repeat="game in vm.gameArray.list | filter: gameSearch">
-                <td>{{game.name}}</td>
-                <td>{{game.game_type}}</td>
-                <td>{{game.game_creator}}</td>
-                <td>{{game.players}}</td>
-                <td>{{game.duration}}</td>
-                <td class="text-center">
-                    <button class="btn btn-success" ng-click="vm.addToCollection(game)">
-                        <span class="glyphicon glyphicon-asterisk"></span>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
+        </table>
+        <br>
+    </div>
+    <div class="col-sm-8">
+        <button class="btn btn-primary" ng-click="vm.addNewGame()">Create a Game</button>
+        <br>
+        <div>
+            <h3 class="text-center">Games</h3>
+            <input class="form-control" type="text" ng-model="gameSearch" placeholder="Search for a Game" />
+            <table class="table">
 
-    </table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Game Type</th>
+                        <th>Game Creator</th>
+                        <th>Players</th>
+                        <th>Duration</th>
+                        <th>Add to my Collection</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="game in vm.gameArray.list | filter: gameSearch">
+                        <td>{{game.name}}</td>
+                        <td>{{game.game_type}}</td>
+                        <td>{{game.game_creator}}</td>
+                        <td>{{game.players}}</td>
+                        <td>{{game.duration}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-success" ng-click="vm.addToCollection(game)">
+                                <span class="glyphicon glyphicon-asterisk"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
 </div>
