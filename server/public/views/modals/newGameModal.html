@@ -1,14 +1,42 @@
 <div class="modal-header">
-        <h3 class="modal-title">Event action occurred!</h3>
-    </div>
-    <div class="modal-body">
-        <p>Action:
-            <pre>Add a game</pre>
-        </p>
-        <p>Event:
-            <pre>Any game</pre>
-        </p>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="$close()">OK</button>
-    </div>
+    <h3 class="modal-title">Event action occurred!</h3>
+</div>
+<div class="modal-body">
+    <p>Action:
+        <pre>Add a game</pre>
+    </p>
+    <p>
+        <h4>New Game:</h4>
+        <div>
+            Game Name:
+            <br>
+            <input type="text" ng-model="vm.newGame.name">
+            <br> Game Type:
+            <br>
+            <select name="typeRepeat" ng-model="vm.newGame.gameType">
+
+                <option ng-repeat="type in vm.gameTypeArray.list" value="{{type.game_type}}">{{type.game_type}}</option>
+
+            </select>
+            <br> Game Creator:
+            <br>
+            <select name="creatorRepeat" ng-model="vm.newGame.gameCreator">
+
+                <option ng-repeat="creator in vm.gameCreatorArray.list" value="{{creator.game_creator}}">{{creator.game_creator}}</option>
+
+            </select>
+            <br> Number of Players: (example: 2-4)
+            <br>
+            <input type="text" ng-model="vm.newGame.players">
+            <br> Game Duration: (example: 45 minutes - 2 hours)
+            <br>
+            <input type="text" ng-model="vm.newGame.duration">
+        </div>
+        {{vm.newGame}}
+
+    </p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" ng-click="vm.addNewGame(vm.newGame)">Submit Game</button>
+    <button class="btn btn-primary" ng-click="$close()">OK</button>
+</div>
