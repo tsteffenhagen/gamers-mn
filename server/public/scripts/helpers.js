@@ -30,7 +30,7 @@ myApp.factory('alert', function ($uibModal) {
           vm.event.startsAt = vm.editDate(vm.event.startsAt)
           vm.event.endsAt = vm.editDate(vm.event.endsAt)
 
-          vm.editEvent = function (event) {
+          vm.editEvent = function (event, $http, $location) {
             console.log(event)
 
             $http({

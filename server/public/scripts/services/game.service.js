@@ -2,12 +2,29 @@ myApp.service('GameService', function ($http, $location) {
     console.log('GameService Loaded');
     var self = this;
 
+    self.gameArray = { list: [] };
+
     self.gameTypeArray = { list: [] };
 
     self.gameCreatorArray = { list: [] };
 
+    self.gameCollectionArray = { list: [] };
+
     self.addNewGame = function () {
         console.log('Button clicked');
+    }
+
+    self.getGames = function () {
+
+        $http({
+            method: 'GET',
+            url: '/games'
+        }).then(function (response) {
+            console.log('response', response);
+            self.gameArray.list = response.data;
+        })
+        console.log(' WORKING', self.gameArray);
+        
     }
 
     self.getGameTypes = function () {
@@ -19,7 +36,6 @@ myApp.service('GameService', function ($http, $location) {
             console.log('response', response);
             self.gameTypeArray.list = response.data;
         })
-        console.log('IS IT WORKING', self.gameTypeArray);
         
     }
 
@@ -32,8 +48,18 @@ myApp.service('GameService', function ($http, $location) {
             console.log('response', response);
             self.gameCreatorArray.list = response.data;
         })
-        console.log('IS IT WORKING MEOW', self.gameCreatorArray);
         
+    }
+
+    self.getGameCollection = function () {
+        
+        $http({
+            method: 'GET',
+            url: '/games/gameCollection'
+        }).then(function (response) {
+            console.log('response', response);
+            self.gameCollectionArray.list = response.data;
+        })
     }
 
     self.addNewGame = function (newGame) {
@@ -50,7 +76,19 @@ myApp.service('GameService', function ($http, $location) {
             newGame.gameCreator = '';
             newGame.players = '';
             newGame.duration='';
+        })
+        self.getGames();
+    }
 
+    self.addToCollection = function (game) {
+        console.log('game to add', game)
+
+        $http({
+            method: 'POST',
+            url: '/games/collections',
+            data: game
+        }).then(function (response) {
+            console.log('response', response);            
         })
     }
 })

@@ -47,6 +47,15 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/game', {
+      templateUrl: '/views/templates/game.html',
+      controller: 'GameController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });

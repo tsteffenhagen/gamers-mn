@@ -4,6 +4,27 @@ var passport = require('passport');
 var pool = require('../modules/pool.js');
 var path = require('path');
 
+router.get('/', function (req, res) {
+
+    userId = req.user.id
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT * FROM games;`, function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(result.rows);
+                    }
+                });
+        }
+    });
+});
+
 router.get('/gametype', function (req, res) {
 
     userId = req.user.id
@@ -34,6 +55,30 @@ router.get('/gamecreators', function (req, res) {
             res.sendStatus(500);
         } else {
             client.query(`SELECT * FROM game_creator;`, function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(result.rows);
+                    }
+                });
+        }
+    });
+});
+
+router.get('/gameCollection', function (req, res) {
+
+    userId = req.user.id
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT "games"."name", "games"."game_type", "games"."game_creator", "games"."players", "games"."duration", "users_collections"."id", "games"."id" AS "gameId"
+            FROM "games" JOIN "users_collections"
+            ON "games"."id" = "users_collections"."game_id"
+            WHERE "users_collections"."user_id" = ${userId};`, function (errorMakingDatabaseQuery, result) {
                     done();
                     if (errorMakingDatabaseQuery) {
                         console.log('error', errorMakingDatabaseQuery);
@@ -113,6 +158,31 @@ router.delete('/', function (req, res) {
         }
     });
 });
+
+router.post('/collections', function (req, res) {
+    var newGame = req.body;
+    userId = req.user.id
+
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`INSERT INTO users_collections ("user_id", "game_id")
+            VALUES ($1, $2);`, [userId, newGame.id],
+                function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                })
+        }
+    })
+});
+
+
 
 module.exports = router;
 

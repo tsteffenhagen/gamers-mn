@@ -10,6 +10,9 @@ body, html {
   font-weight: 600;
 }
 
+header {
+  height: 48px;
+}
 .instructions {
   background-color: #333333;
   color: #DDDDDD;
@@ -52,6 +55,12 @@ body, html {
   background-color: #333333;
   width: 100%;
   border-radius: 0px;
+}
+
+.jumbotron {
+  background-color: #141212;
+  width: 100%;
+  border-radius: 20px;
 }
 
 ul {

@@ -1,0 +1,37 @@
+<div ng-include="'views/partials/nav.html'"></div>
+
+<button class="btn btn-primary" ng-click="vm.addNewGame()">Create a Game</button>
+
+<div>
+    <h3 class="text-center">Games</h3>
+    <input class="form-control" type="text" ng-model="gameSearch" placeholder="Search for a Game" />
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Game Type</th>
+                <th>Game Creator</th>
+                <th>Players</th>
+                <th>Duration</th>
+                <th>Add to my Collection</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="game in vm.gameArray.list | filter: gameSearch">
+                <td>{{game.name}}</td>
+                <td>{{game.game_type}}</td>
+                <td>{{game.game_creator}}</td>
+                <td>{{game.players}}</td>
+                <td>{{game.duration}}</td>
+                <td class="text-center">
+                    <button class="btn btn-success" ng-click="vm.addToCollection(game)">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
