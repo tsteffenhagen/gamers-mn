@@ -1,4 +1,4 @@
-myApp.factory('alert', function ($uibModal) {
+myApp.service('alert', function ($uibModal, $http, $location) {
 
   function show(action, event) {
     if (action === 'NewGameClicked') {
@@ -19,6 +19,7 @@ myApp.factory('alert', function ($uibModal) {
           vm.action = action
           vm.event = event;
 
+          vm.userArray = { list: [] }
           console.log(event);
 
           vm.editDate = function (date) {
@@ -30,9 +31,30 @@ myApp.factory('alert', function ($uibModal) {
           vm.event.startsAt = vm.editDate(vm.event.startsAt)
           vm.event.endsAt = vm.editDate(vm.event.endsAt)
 
-          vm.editEvent = function (event, $http, $location) {
-            console.log(event)
 
+          vm.getUsers = function () {
+            $http({
+              method: 'GET',
+              url: '/user/userlist'
+            }).then(function (response) {
+              console.log('response', response);
+              vm.userArray.list = response.data;
+            })
+          };
+          vm.getUsers();
+
+          vm.inviteUser = function (info) {
+            console.log('in inviteUser', info);
+            $http({
+              method: 'POST',
+              url: '/events/invite',
+              data: info
+            }).then(function (response) {
+              console.log('response', response);              
+            })            
+          };
+
+          vm.editEvent = function (event) {
             $http({
               method: 'PUT',
               url: '/events',
@@ -42,9 +64,8 @@ myApp.factory('alert', function ($uibModal) {
             })
           };
 
-          vm.deleteEvent = function (dateToRemove) {
-            console.log('delete this ', dateToRemove);
 
+          vm.deleteEvent = function (dateToRemove) {
             $http({
               method: 'DELETE',
               url: '/events',
@@ -52,7 +73,7 @@ myApp.factory('alert', function ($uibModal) {
             }).then(function (response) {
               console.log('response', response);
             })
-          }
+          };
         },
         controllerAs: 'vm'
       });

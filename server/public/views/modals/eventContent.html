@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body">
     <p>Action:
-        <pre>{{ vm.action }}</pre>
+        <pre>{{ vm.event }}</pre>
     </p>
     <!-- <p>Event:
         <pre>{{ vm.event | json }}</pre> -->
@@ -18,14 +18,18 @@
         <br> Color:
         <br>
         <input colorpicker type="text" ng-model="vm.event.color.primary">
+        <br>Invite User:
         <br>
-
-        <br>
-        <button class="btn btn-default" ng-click="vm.editEvent(vm.event)">Save Changes</button>
+        <select name="userRepeat" ng-model="vm.event.inviteId">
+            <option ng-repeat="user in vm.userArray.list" value="{{user.id}}">{{user.username}}</option>
+        </select>
     </form>
 
 </div>
-<div class="modal-footer">
+<div class="modal-footer text-center">
+    <button class="btn btn-info" ng-click="vm.inviteUser(vm.event)">Invite User</button>
+
+    <button class="btn btn-default" ng-click="vm.editEvent(vm.event)">Save Changes</button>
     <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.event); $close()">Delete Event</button>
 
     <button class="btn btn-primary" ng-click="$close()">OK</button>

@@ -1,15 +1,24 @@
-myApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, CalendarService) {
+myApp.controller('KitchenSinkCtrl', ['moment', 'alert', 'calendarConfig', 'CalendarService', 'filterFilter', function (moment, alert, calendarConfig, CalendarService, filterFilter) {
 
 
     var vm = this;
 
+    vm.eventSearch = "";
 
     vm.CalendarService = CalendarService;
     vm.calendarView = 'month';
     vm.viewDate = new Date();
 
+    vm.filteredEvents = []
+
     CalendarService.getEvents();
     vm.addEvent = CalendarService.addEvent
+
+    //Function for filtering event array
+    vm.criteriaChanged = CalendarService.criteriaChanged
+
+    vm.criteriaChanged();
+
 
     //Opens Modal for adding a new event
     vm.addNewEvent = function (event) {
@@ -72,4 +81,4 @@ myApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, Cal
 
     };
 
-});
+}]);

@@ -1,8 +1,11 @@
-myApp.service('CalendarService', function ($http, $location) {
+myApp.service('CalendarService', function ($http, $location, filterFilter) {
     console.log('CalendarService Loaded');
     var self = this;
 
     self.eventObjects = [];
+
+    self.eventSearch = "";
+
 
 
 
@@ -17,7 +20,6 @@ myApp.service('CalendarService', function ($http, $location) {
             draggable: true,
             resizable: true
         });
-
     };
 
 
@@ -58,16 +60,24 @@ myApp.service('CalendarService', function ($http, $location) {
         }).then(function (response) {
             console.log('response', response);
             self.getEvents();
+            self.criteriaChanged();
             newEvent.title = '';
             newEvent.color = '';
             newEvent.month = '';
             newEvent.day = '';
             newEvent.startDateTime='';
             newEvent.endDateTime='';
-
             console.log('new event Objects', self.eventObjects);
         })
     }
+    
+    self.criteriaChanged = function (criteria) {
+        console.log(criteria);
 
+        self.filteredEvents = filterFilter(self.eventObjects, criteria)
+
+        console.log('EVENTS', self.filteredEvents);
+        
+    }
 
 })

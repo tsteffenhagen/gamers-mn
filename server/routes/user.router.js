@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var pool = require('../modules/pool.js');
+var path = require('path');
+var passport = require('passport');
+
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
@@ -27,6 +31,27 @@ router.get('/logout', function(req, res) {
   req.logOut();
   res.sendStatus(200);
 });
+
+//GET users
+router.get('/userlist', function(req, res) {
+  pool.connect(function(errorConnectingToDatabase, client, done) {
+    if (errorConnectingToDatabase) {
+      console.log('errpr', errorConnectingToDatabase);
+      res.sendStatus(500);
+          } else {
+            client.query(`Select "username", "id" FROM users;`, function(errorMakingDatabaseQuery, result) {
+              if (errorMakingDatabaseQuery) {
+                console.log('error', errorMakingDatabaseQuery);
+                res.sendStatus(500);                
+              } else {
+                res.send(result.rows);
+              }
+            })
+          }
+  })
+})
+
+
 
 
 module.exports = router;

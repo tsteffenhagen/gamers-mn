@@ -23,7 +23,6 @@ myApp.service('GameService', function ($http, $location) {
             console.log('response', response);
             self.gameArray.list = response.data;
         })
-        console.log(' WORKING', self.gameArray);
         
     }
 

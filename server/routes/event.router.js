@@ -53,17 +53,40 @@ router.post('/', function (req, res) {
     })
 });
 
+
+router.post('/invite', function (req, res) {
+    var inviteInfo = req.body;
+    console.log(req.body);
+    
+    // pool.connect(function (errorConnectingToDatabase, client, done) {
+    //     if (errorConnectingToDatabase) {
+    //         console.log('error', errorConnectingToDatabase);
+    //         res.sendStatus(500);
+    //     } else {
+    //         client.query(`DO YOUR INSIPID QUERY HERE;`[PARAMS],
+    //             function (errorMakingDatabaseQuery, result) {
+    //                 done();
+    //                 if (errorConnectingToDatabase) {
+    //                     res.sendStatus(500);
+    //                 } else {
+    //                     res.sendStatus(201);
+    //                 }
+    //             })
+    //     }
+    // })
+})
+
 router.put('/', function (req, res) {
     var editEvent = req.body;
     console.log(editEvent);
-    
+
 
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`UPDATE events SET title=$1, color=$2, real_date=$3 WHERE id=$4;`, [editEvent.title, editEvent.color.primary, editEvent.realDate, editEvent.editId],
+            client.query(`UPDATE events SET title=$1, color=$2, starts_at=$3 WHERE id=$4;`, [editEvent.title, editEvent.color.primary, editEvent.startsAt, editEvent.editId],
                 function (errorMakingDatabaseQuery, result) {
                     done();
                     if (errorMakingDatabaseQuery) {
@@ -76,7 +99,7 @@ router.put('/', function (req, res) {
     })
 });
 
-router.delete('/', function (req, res) {  
+router.delete('/', function (req, res) {
     var eventToRemove = req.query;
 
     pool.connect(function (errorConnectingToDatabase, client, done) {
