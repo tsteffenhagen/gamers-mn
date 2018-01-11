@@ -12,7 +12,7 @@
             <br>
             Game: <br> 
             <select name="gameRepeat" ng-model="vm.newEvent.game">
-                <option ng-repeat="game in vm.gameArray.list" value="{{game}}">{{game.name}}</option>
+                <option ng-repeat="game in vm.gameArray.list" ng-value={{game}}>{{game.name}}</option>
             </select>
             <br>
            Color:<br>

@@ -12,10 +12,36 @@ router.get('/', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            client.query(`SELECT "events"."title", "events"."color", "events"."starts_at", "events"."ends_at", "users_events"."id", "events"."id" AS "eventId"
+            client.query(`SELECT "events"."title", "events"."color", "events"."starts_at", "events"."ends_at", "users_events"."id", "events"."id" AS "eventId", "users_events"."creator", "users_events"."accepted", "users_events"."denied", "users_events"."public", "users_events"."invited"
             FROM "events" JOIN "users_events"
             ON "events"."id" = "users_events"."event_id"
-            WHERE "users_events"."user_id" = ${userId};`, function (errorMakingDatabaseQuery, result) {
+            WHERE "users_events"."user_id" = ${userId}
+            AND "users_events"."accepted" = 'true';`, function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(result.rows);
+                    }
+                });
+        }
+    });
+});
+
+router.get('/invites', function (req, res) {
+
+    userId = req.user.id
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT "events"."title", "events"."color", "events"."starts_at", "events"."ends_at", "users_events"."id", "events"."id" AS "eventId", "users_events"."creator", "users_events"."accepted", "users_events"."denied", "users_events"."public", "users_events"."invited"
+            FROM "events" JOIN "users_events"
+            ON "events"."id" = "users_events"."event_id"
+            WHERE "users_events"."user_id" = ${userId}
+            AND "users_events"."invited" = 'true';`, function (errorMakingDatabaseQuery, result) {
                     done();
                     if (errorMakingDatabaseQuery) {
                         console.log('error', errorMakingDatabaseQuery);
@@ -39,8 +65,8 @@ router.post('/', function (req, res) {
         } else {
             client.query(`WITH new_event AS (INSERT INTO events ("title", "color", "starts_at", "ends_at")
             VALUES ($1, $2, $3, $4) RETURNING id)            
-            INSERT INTO users_events ("user_id", "event_id")
-            VALUES ($5, (Select id FROM new_event));;`, [newEvent.title, newEvent.color, newEvent.startDateTime, newEvent.endDateTime, userId],
+            INSERT INTO users_events ("user_id", "event_id", "creator", "accepted", "denied", "public", "invited" )
+            VALUES ($5, (Select id FROM new_event), 'true', 'true', 'false', 'false', 'false');`, [newEvent.title, newEvent.color, newEvent.startDateTime, newEvent.endDateTime, userId],
                 function (errorMakingDatabaseQuery, result) {
                     done();
                     if (errorMakingDatabaseQuery) {
@@ -56,24 +82,27 @@ router.post('/', function (req, res) {
 
 router.post('/invite', function (req, res) {
     var inviteInfo = req.body;
-    console.log(req.body);
-    
-    // pool.connect(function (errorConnectingToDatabase, client, done) {
-    //     if (errorConnectingToDatabase) {
-    //         console.log('error', errorConnectingToDatabase);
-    //         res.sendStatus(500);
-    //     } else {
-    //         client.query(`DO YOUR INSIPID QUERY HERE;`[PARAMS],
-    //             function (errorMakingDatabaseQuery, result) {
-    //                 done();
-    //                 if (errorConnectingToDatabase) {
-    //                     res.sendStatus(500);
-    //                 } else {
-    //                     res.sendStatus(201);
-    //                 }
-    //             })
-    //     }
-    // })
+    console.log('IN INVITE', req.body);
+
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+
+            console.log('IN INVITE', req.body);
+            client.query(`INSERT INTO users_events ("user_id", "event_id", "creator", "accepted", "denied", "public", "invited")
+            VALUES ($1, $2, 'false', 'false', 'false', 'false', 'true');`, [req.body.inviteId, req.body.editId],
+                function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorConnectingToDatabase) {
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                })
+        }
+    })
 })
 
 router.put('/', function (req, res) {

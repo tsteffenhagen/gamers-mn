@@ -12,6 +12,8 @@ myApp.controller('KitchenSinkCtrl', ['moment', 'alert', 'calendarConfig', 'Calen
     vm.filteredEvents = []
 
     CalendarService.getEvents();
+    CalendarService.getEventInvites();
+
     vm.addEvent = CalendarService.addEvent
 
     //Function for filtering event array

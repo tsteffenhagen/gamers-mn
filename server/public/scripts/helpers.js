@@ -39,12 +39,17 @@ myApp.service('alert', function ($uibModal, $http, $location) {
             }).then(function (response) {
               console.log('response', response);
               vm.userArray.list = response.data;
+              console.log(vm.userArray.list);
+              
             })
           };
           vm.getUsers();
 
           vm.inviteUser = function (info) {
             console.log('in inviteUser', info);
+            info.inviteId = parseInt(info.inviteId);
+            console.log('inviteUser redux', info);
+            
             $http({
               method: 'POST',
               url: '/events/invite',

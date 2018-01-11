@@ -4,6 +4,8 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
 
     self.eventObjects = [];
 
+    self.eventInviteObjects = [];
+
     self.eventSearch = "";
 
 
@@ -35,7 +37,7 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
             console.log('response', response);
             for (let i = 0; i < response.data.length; i++) {
                 self.eventObjects.push({
-                    title: `${response.data[i].title}`,
+                    title: response.data[i].title,
                     startsAt: new Date(response.data[i].starts_at),
                     endsAt: new Date(response.data[i].ends_at),
                     color: { primary: response.data[i].color },
@@ -47,6 +49,29 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
                 
             }
         return self.eventObjects;
+        })
+    }
+
+    self.getEventInvites = function () {
+        self.eventInviteObjects = [];
+        $http({
+            method: 'GET',
+            url: '/events/invites'
+        }).then(function (response) {
+            console.log('event invites', response);
+            for (let i = 0; i < response.data.length; i++) {
+                self.eventInviteObjects.push({
+                    title: response.data[i].title,
+                    eventId: response.data[i].eventId,
+                    accepted: response.data[i].accepted,
+                    denied: response.data[i].denied,
+                    invited: response.data[i].invited,
+                    starts_at: response.data[i].starts_at
+                })
+                
+            }
+            console.log(self.eventInviteObjects);
+            
         })
     }
 
