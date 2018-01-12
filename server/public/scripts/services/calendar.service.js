@@ -10,6 +10,31 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
 
 
 
+    self.acceptInvitation = function (event) {
+        $http({
+            method: 'PUT',
+            url: '/events/invites/accept',
+            data: event
+        }).then(function (response) {
+            console.log('response', response);
+            self.getEvents();
+            self.criteriaChanged();
+            self.getEventInvites()
+        })
+    }
+
+    self.declineInvitation = function (event) {
+        $http({
+            method: 'PUT',
+            url: '/events/invites/decline',
+            data: event
+        }).then(function (response) {
+            console.log('response', response);
+            self.getEvents();
+            self.criteriaChanged();
+            self.getEventInvites()
+        })
+    }
 
     self.addEvent = function () {
         self.eventObjects.push({
@@ -46,9 +71,9 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
                     deleteId: response.data[i].id,
                     editId: response.data[i].eventId
                 })
-                
+
             }
-        return self.eventObjects;
+            return self.eventObjects;
         })
     }
 
@@ -68,10 +93,10 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
                     invited: response.data[i].invited,
                     starts_at: response.data[i].starts_at
                 })
-                
+
             }
             console.log(self.eventInviteObjects);
-            
+
         })
     }
 
@@ -90,19 +115,19 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
             newEvent.color = '';
             newEvent.month = '';
             newEvent.day = '';
-            newEvent.startDateTime='';
-            newEvent.endDateTime='';
+            newEvent.startDateTime = '';
+            newEvent.endDateTime = '';
             console.log('new event Objects', self.eventObjects);
         })
     }
-    
+
     self.criteriaChanged = function (criteria) {
         console.log(criteria);
 
         self.filteredEvents = filterFilter(self.eventObjects, criteria)
 
         console.log('EVENTS', self.filteredEvents);
-        
+
     }
 
 })

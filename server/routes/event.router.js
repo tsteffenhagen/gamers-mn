@@ -54,6 +54,60 @@ router.get('/invites', function (req, res) {
     });
 });
 
+router.put('/invites/accept', function (req, res) {
+    
+    console.log('REQ BODY INFO', req.body);
+    console.log('REQ USER INFO', req.user.id);
+    
+    
+
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`UPDATE users_events SET accepted='true', invited='false'
+            WHERE  user_id=$1
+            AND event_id=$2;`, [req.user.id, req.body.eventId],
+                function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                })
+        }
+    })
+});
+
+router.put('/invites/decline', function (req, res) {
+    
+    console.log('REQ BODY INFO', req.body);
+    console.log('REQ USER INFO', req.user.id);
+    
+    
+
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`UPDATE users_events SET denied='true', invited='false'
+            WHERE  user_id=$1
+            AND event_id=$2;`, [req.user.id, req.body.eventId],
+                function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                })
+        }
+    })
+});
+
 router.post('/', function (req, res) {
     var newEvent = req.body;
     userId = req.user.id

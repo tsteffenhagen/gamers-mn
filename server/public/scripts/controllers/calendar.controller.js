@@ -21,7 +21,11 @@ myApp.controller('KitchenSinkCtrl', ['moment', 'alert', 'calendarConfig', 'Calen
 
     vm.criteriaChanged();
 
+    
+    vm.acceptInvitation = CalendarService.acceptInvitation
 
+    vm.declineInvitation = CalendarService.declineInvitation
+    
     //Opens Modal for adding a new event
     vm.addNewEvent = function (event) {
         alert.show('NewEventClicked', event);

@@ -13,7 +13,6 @@
         <br>
         <input type="text" ng-model="vm.event.title">
         <br> Starts at:
-        <br>
         <input type="datetime-local" ng-model="vm.event.startsAt">
         <br> Color:
         <br>
@@ -26,11 +25,13 @@
     </form>
 
 </div>
-<div class="modal-footer text-center">
-    <button class="btn btn-info" ng-click="vm.inviteUser(vm.event)">Invite User</button>
-
-    <button class="btn btn-default" ng-click="vm.editEvent(vm.event)">Save Changes</button>
-    <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.event); $close()">Delete Event</button>
-
-    <button class="btn btn-primary" ng-click="$close()">OK</button>
+<div class="modal-footer ">
+    <div class="text-center">
+    <div class="btn-group" role="group" aria-label="...">
+        <button class="btn btn-info" ng-click="vm.inviteUser(vm.event)">Invite User</button>
+        <button class="btn btn-default" ng-click="vm.editEvent(vm.event)">Save Changes</button>
+        <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.event); $close()">Delete Event</button>
+        <button class="btn btn-primary" ng-click="$close()">OK</button>
+    </div>
+    </div>
 </div>

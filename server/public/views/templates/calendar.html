@@ -8,9 +8,11 @@
             <div class="col-md-3 text-center">
                 <h2>Filter Events</h2>
 
-            <input class="form-control" type="text" ng-model="eventSearch" ng-change="vm.criteriaChanged(eventSearch)" placeholder="Search Events"/> 
-            <br>
-            <h3>Event Invitations</h3> <br>
+                <input class="form-control" type="text" ng-model="eventSearch" ng-change="vm.criteriaChanged(eventSearch)" placeholder="Search Events"
+                />
+                <br>
+                <h3>Event Invitations</h3>
+                <br>
                 <div ng-repeat="invite in vm.CalendarService.eventInviteObjects">
                     <a href="" ng-click="isCollapsed = !isCollapsed"> {{invite.title}} </a>
                     <br>
@@ -38,9 +40,12 @@
                                 <tr>
 
                                     <td>
-                                        <strong>test</strong>
+                                        <strong>Join Event?</strong>
                                         <br>
-                                        <i>other test</i>
+                                        <div class="btn-group" role="group" aria-label="...">
+                                            <button type="button" class="btn btn-success" ng-click="vm.acceptInvitation(invite)">Accept</button>
+                                            <button type="button" class="btn btn-danger" ng-click="vm.declineInvitation(invite)">Decline</button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
