@@ -10,9 +10,6 @@ myApp.service('GameService', function ($http, $location) {
 
     self.gameCollectionArray = { list: [] };
 
-    self.addNewGame = function () {
-        console.log('Button clicked');
-    }
 
     self.getGames = function () {
 
@@ -77,6 +74,32 @@ myApp.service('GameService', function ($http, $location) {
             newGame.duration='';
         })
         self.getGames();
+    }
+
+    self.addNewType = function (newType) {
+        console.log('in add new type', newType);
+
+        $http({
+            method: 'POST',
+            url: '/games/type',
+            data: newType
+        }).then(function (response) {
+            console.log('response', response);
+            newType = '';
+        })
+    }
+    
+    self.addNewCreator = function (newCreator) {
+        console.log('in add new creator', newCreator);
+
+        $http({
+            method: 'POST',
+            url: '/games/creator',
+            data: newCreator
+        }).then(function (response) {
+            console.log('response', response);
+            newCreator = '';
+        })
     }
 
     self.addToCollection = function (game) {

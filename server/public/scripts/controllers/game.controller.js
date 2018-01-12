@@ -21,6 +21,13 @@ myApp.controller('GameController', function(GameService, alert) {
       alert.show('NewGameClicked', event);
   };
 
+  vm.addNewGameType = function (event) {
+    alert.show('NewGameTypeClicked', event);
+}; 
+   vm.addNewGameCreator = function (event) {
+  alert.show('NewGameCreatorClicked', event);
+};
+
 
   });
   

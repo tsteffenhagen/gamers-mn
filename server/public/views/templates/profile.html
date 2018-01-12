@@ -3,14 +3,13 @@
 
 </div>
 
-
 <div class="container">
 
     <div class="col-md-4 text-center view">
         <h2> USER</h2>
-        <img src="../views/images/a1.jpg" id="displayPicture">
+        <img src={{vm.UserService.userObject.profilePic}} id="displayPicture">
         <br>
-        <button class="btn-default" ng-click="vm.changeProfilePic()">Edit Profile Picture</button>
+        <button ng-click="vm.uploadProfilePicture(userImage.imageUrl)">Upload Profile Image</button>
         <br>
         <h2>GAMES</h2>
 

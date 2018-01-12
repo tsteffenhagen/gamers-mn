@@ -11,7 +11,17 @@ myApp.service('alert', function ($uibModal, $http, $location) {
         templateUrl: '/views/modals/newEventModal.html',
         controller: 'NewEventController as vm'
       });
-    } else {
+    } else if (action === 'NewGameCreatorClicked') {
+      return $uibModal.open({
+        templateUrl: '/views/modals/newGameCreatorModal.html',
+        controller: 'NewGameController as vm'
+      });
+    }  else if (action === 'NewGameTypeClicked') {
+      return $uibModal.open({
+        templateUrl: '/views/modals/newGameTypeModal.html',
+        controller: 'NewGameController as vm'
+      });
+    }  else {
       return $uibModal.open({
         templateUrl: '/views/modals/eventContent.html',
         controller: function () {

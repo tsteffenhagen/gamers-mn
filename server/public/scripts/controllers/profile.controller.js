@@ -1,16 +1,17 @@
-myApp.controller('ProfileController', function (moment, alert, calendarConfig, CalendarService, GameService) {
+myApp.controller('ProfileController', function (moment, alert, calendarConfig, CalendarService, GameService, UserService) {
 
     var vm = this;
 
     
     vm.CalendarService = CalendarService;
+    vm.UserService = UserService;
     vm.calendarView = 'month';
     vm.viewDate = new Date();
     
     CalendarService.getEvents();
     vm.addEvent = CalendarService.addEvent
     vm.addnewEvent = CalendarService.addnewEvent
-    // vm.addNewGame = GameService.addNewGame
+    vm.uploadProfilePicture = UserService.uploadProfilePicture;
     vm.addNewGame = function (event) {
         alert.show('NewGameClicked', event);
     };

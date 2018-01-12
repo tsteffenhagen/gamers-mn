@@ -10,7 +10,9 @@ myApp.controller('NewGameController', function(GameService) {
     vm.gameTypeArray = GameService.gameTypeArray;
     vm.gameCreatorArray = GameService.gameCreatorArray;
 
-    vm.addNewGame = GameService.addNewGame
+    vm.addNewGame = GameService.addNewGame;
+    vm.addNewType = GameService.addNewType;
+    vm.addNewCreator = GameService.addNewCreator;
   });
 
   

@@ -114,6 +114,49 @@ router.post('/', function (req, res) {
     })
 });
 
+router.post('/type', function (req, res) {
+
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`INSERT INTO game_type ("game_type")
+            VALUES ($1);`, [req.body.name],
+                function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                })
+        }
+    })
+});
+
+router.post('/creator', function (req, res) {
+console.log('IS THIS THING WORKING', req.body);
+
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`INSERT INTO game_creator ("game_creator")
+            VALUES ($1);`, [req.body.name],
+                function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                })
+        }
+    })
+});
+
 router.put('/', function (req, res) {
     var editEvent = req.body;
     console.log(editEvent);

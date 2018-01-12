@@ -81,12 +81,7 @@ router.put('/invites/accept', function (req, res) {
     })
 });
 
-router.put('/invites/decline', function (req, res) {
-    
-    console.log('REQ BODY INFO', req.body);
-    console.log('REQ USER INFO', req.user.id);
-    
-    
+router.put('/invites/decline', function (req, res) {    
 
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
