@@ -9,9 +9,13 @@ myApp.service('UserService', function($http, $location){
     console.log('UserService -- getuser');
     $http.get('/user').then(function(response) {
         if(response.data.username) {
-            // user has a curret session on the server
+            // user has a current session on the server
             self.userObject.userName = response.data.username;
+            if(response.data.image_url != null) {
             self.userObject.profilePic = response.data.image_url;
+            } else {
+              self.userObject.profilePic = '../views/images/a1.jpg';
+            }
             console.log('UserService -- getuser -- User Data: ', self.userObject.userName, response.data.image_url);
         } else {
             console.log('UserService -- getuser -- failure');
