@@ -21,10 +21,10 @@
                         <!-- <div class="well well"> -->
 
 
-                        <table class="table">
+                        <table class="table text-center">
                             <thead>
                                 <tr>
-                                    <th>{{stuff}}</th>
+                                    <th>Game Title Here</th>
                                 </tr>
                             </thead>
 
@@ -34,7 +34,15 @@
                                     <td>
                                         <strong>Starts At:</strong>
                                         <br>
-                                        <i>{{invite.starts_at}}</i>
+                                        <i>{{invite.starts_at | date:'MMM d, y h:mm a':'-0600'}}</i>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <strong>Ends At:</strong>
+                                        <br>
+                                        <i>{{invite.ends_at | date:'MMM d, y h:mm a':'-0600'}}</i>
                                     </td>
                                 </tr>
                                 <tr>

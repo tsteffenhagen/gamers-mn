@@ -7,6 +7,8 @@ myApp.controller('ProfileController', function (moment, alert, calendarConfig, C
     vm.UserService = UserService;
     vm.calendarView = 'month';
     vm.viewDate = new Date();
+
+    vm.userObject = UserService.userObject
     
     CalendarService.getEvents();
     vm.addEvent = CalendarService.addEvent

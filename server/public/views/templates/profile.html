@@ -1,26 +1,23 @@
-
 <div ng-include="'views/partials/nav.html'">
 
 </div>
 
 <div class="container">
 
-    <div class="col-md-4 text-center view">
-        <h2> USER</h2>
+    <div class="col-md-4 text-center">
+        <h2> {{vm.userObject.userName}}</h2>
         <img src={{vm.UserService.userObject.profilePic}} id="displayPicture">
         <br>
         <button ng-click="vm.uploadProfilePicture(userImage.imageUrl)">Upload Profile Image</button>
         <br>
-        <h2>GAMES</h2>
-
-        <button class="btn-default" ng-click="vm.getGameList()"> List of Games</button>
-        <button class="btn-default" ng-click="vm.addNewGame()"> Add a Game</button>
-        <br>
-        <h3>My Game Collection</h3>
-
+        <button class="btn btn-default" ng-click="vm.UserService.logout()">Log Out</button>
+        <hr>
+        <h3>Upcoming Games</h3>
+        <p>Stuff will go here</p>
+        <hr>
     </div>
 
-    <div class="col-md-8 view">
+    <div class="col-md-8">
 
         <h2 class="text-center">{{ vm.calendarTitle }}</h2>
 
@@ -56,19 +53,10 @@
 
         <br>
 
-        <mwl-calendar events="vm.CalendarService.eventObjects" 
-                      view="vm.calendarView" 
-                      view-title="vm.calendarTitle"
-                      view-date="vm.viewDate"
-                      on-event-click="vm.eventClicked(calendarEvent)"
-                      on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-                      cell-is-open="vm.cellIsOpen"
-                      day-view-start="06:00"
-                      day-view-end="22:59"
-                      day-view-split="30"
-                      cell-modifier="vm.modifyCell(calendarCell)"
-                      cell-auto-open-disabled="true"
-                      on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
+        <mwl-calendar events="vm.CalendarService.eventObjects" view="vm.calendarView" view-title="vm.calendarTitle" view-date="vm.viewDate"
+            on-event-click="vm.eventClicked(calendarEvent)" on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+            cell-is-open="vm.cellIsOpen" day-view-start="06:00" day-view-end="22:59" day-view-split="30" cell-modifier="vm.modifyCell(calendarCell)"
+            cell-auto-open-disabled="true" on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
         </mwl-calendar>
     </div>
 </div>

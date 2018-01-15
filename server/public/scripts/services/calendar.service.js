@@ -58,7 +58,6 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
             method: 'GET',
             url: '/events/public'
         }).then(function (response) {
-
             console.log('PUBLIC EVENT RESPONSE', response);
             for (let i = 0; i < response.data.length; i++) {
                 self.publicEventObjects.push({
@@ -75,7 +74,7 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
             }
             console.log(self.publicEventObjects);
             
-            return self.publicEventObjects;
+            // return self.publicEventObjects;
         })
     }
 
@@ -120,7 +119,8 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
                     accepted: response.data[i].accepted,
                     denied: response.data[i].denied,
                     invited: response.data[i].invited,
-                    starts_at: response.data[i].starts_at
+                    starts_at: response.data[i].starts_at,
+                    ends_at: response.data[i].ends_at
                 })
 
             }
