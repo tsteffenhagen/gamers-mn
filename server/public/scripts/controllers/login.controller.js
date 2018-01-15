@@ -14,7 +14,7 @@ myApp.controller('LoginController', function ($http, $location, UserService, Cal
 
   vm.CalendarService = CalendarService;
 
-  vm.CalendarService.getPublicEvents();
+  // vm.CalendarService.getPublicEvents();
 
   vm.login = function () {
     console.log('LoginController -- login');

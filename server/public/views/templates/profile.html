@@ -6,11 +6,13 @@
 
     <div class="col-md-4 text-center">
         <h2> {{vm.userObject.userName}}</h2>
-        <img src={{vm.UserService.userObject.profilePic}} id="displayPicture">
+        <img class="img-circle" src={{vm.UserService.userObject.profilePic}} id="displayPicture">
         <br>
-        <button ng-click="vm.uploadProfilePicture(userImage.imageUrl)">Upload Profile Image</button>
         <br>
-        <button class="btn btn-default" ng-click="vm.UserService.logout()">Log Out</button>
+        <div class="btn-group">
+        <button class="btn btn-success" ng-click="vm.uploadProfilePicture(userImage.imageUrl)">Upload Profile Image</button>
+        <button class="btn btn-danger" ng-click="vm.UserService.logout()">Log Out</button>
+    </div>
         <hr>
         <h3>Upcoming Games</h3>
         <p>Stuff will go here</p>

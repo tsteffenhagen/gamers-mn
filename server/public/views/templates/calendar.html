@@ -15,8 +15,7 @@
                 <br>
                 <div ng-repeat="invite in vm.CalendarService.eventInviteObjects">
                     <a href="" ng-click="isCollapsed = !isCollapsed"> {{invite.title}} </a>
-                    <br>
-                    <br>
+                    <hr>
                     <div uib-collapse="!isCollapsed">
                         <!-- <div class="well well"> -->
 
@@ -24,12 +23,13 @@
                         <table class="table text-center">
                             <thead>
                                 <tr>
-                                    <th>Game Title Here</th>
+                                    <th>
+                                            <strong>Game:</strong>
+                                            <br>
+                                            <i>{{invite.name}}</i></th>
                                 </tr>
                             </thead>
-
                             <tbody>
-                                <tr>
 
                                     <td>
                                         <strong>Starts At:</strong>

@@ -13,15 +13,42 @@
         <br>
         <input type="text" ng-model="vm.event.title">
         <br> Starts at:
+        <br>
         <input type="datetime-local" ng-model="vm.event.startsAt">
         <br> Color:
         <br>
         <input colorpicker type="text" ng-model="vm.event.color.primary">
         <br>Invite User:
         <br>
-        <select name="userRepeat" ng-model="vm.event.inviteId">
+        <br>
+        <br>
+        <!-- <select name="userRepeat" ng-model="vm.event.inviteId">
             <option ng-repeat="user in vm.userArray.list" value="{{user.id}}">{{user.username}}</option>
-        </select>
+        </select><br> -->
+        <div class="container">
+        <div ng-repeat="user in vm.userArray.list" ng-if="$index % 3 == 0" class="row">
+            <div class="col-xs-3">
+                <img class="img-circle text-center" src={{vm.userArray.list[$index].image_url}} id="displayPicture"><hr>
+                {{vm.userArray.list[$index].username}} 
+                <input type="checkbox" name="user" ng-value={{vm.userArray.list[$index].id}}>
+                <hr>
+            </div>
+            <div class="col-xs-3 img-circle">
+                <img class="img-circle text-center"  src={{vm.userArray.list[$index+1].image_url}} id="displayPicture"><hr>
+                {{vm.userArray.list[$index+1].username}}
+                <input type="checkbox" name="user" ng-value={{vm.userArray.list[$index+1].id}}>
+                 <hr>
+            </div>
+            <div class="col-xs-3 img-circle">
+                <img class="img-circle text-center"  src={{vm.userArray.list[$index+2].image_url}} id="displayPicture"><hr>
+                {{vm.userArray.list[$index+2].username}}
+                <input type="checkbox" name="user" ng-value={{vm.userArray.list[$index+2].id}}>
+                 <hr>
+            </div>
+                
+        </div><br>
+        
+        </div>
     </form>
 
 </div>
