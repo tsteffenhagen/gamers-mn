@@ -1,3 +1,56 @@
 <div class="container">
+    <div class="row">
 
+        <div class="col-md-4 text-center">
+            <h2 class="text-center"> GAMER'S MN</h2>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        </div>
+        <div class="col-md-8 text-center">
+            <h2 class="text-center">{{ vm.calendarTitle }}</h2>
+
+
+            <div class="row">
+
+                <div class="col-sm-5 text-center">
+                    <div class="btn-group">
+
+                        <button class="btn btn-primary" mwl-date-modifier date="vm.viewDate" decrement="vm.calendarView" ng-click="vm.cellIsOpen = false">
+                            Previous
+                        </button>
+                        <button class="btn btn-default" mwl-date-modifier date="vm.viewDate" set-to-today ng-click="vm.cellIsOpen = false">
+                            Today
+                        </button>
+                        <button class="btn btn-primary" mwl-date-modifier date="vm.viewDate" increment="vm.calendarView" ng-click="vm.cellIsOpen = false">
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-sm-2 text-center">
+                    <button class="btn btn-default" ng-click="vm.addNewEvent()">Create New Game</button>
+                </div>
+                <!-- <br class="visible-xs visible-sm"> -->
+
+                <div class="col-sm-5 text-center">
+                    <div class="btn-group">
+                        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'" ng-click="vm.cellIsOpen = false">Year</label>
+                        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'" ng-click="vm.cellIsOpen = false">Month</label>
+                        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'" ng-click="vm.cellIsOpen = false">Week</label>
+                        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'" ng-click="vm.cellIsOpen = false">Day</label>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <mwl-calendar events="vm.CalendarService.publicEventObjects" view="vm.calendarView" view-title="vm.calendarTitle" view-date="vm.viewDate"
+                on-event-click="vm.eventClicked(calendarEvent)" on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+                cell-is-open="vm.cellIsOpen" day-view-start="06:00" day-view-end="22:59" day-view-split="30" cell-modifier="vm.modifyCell(calendarCell)"
+                cell-auto-open-disabled="true" on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
+            </mwl-calendar>
+            <br>
+            <br>
+            <br>
+        </div>
+
+    </div>
 </div>

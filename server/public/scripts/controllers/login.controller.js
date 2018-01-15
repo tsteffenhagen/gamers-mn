@@ -1,11 +1,20 @@
-myApp.controller('LoginController', function($http, $location, UserService) {
+myApp.controller('LoginController', function($http, $location, UserService, CalendarService) {
     console.log('LoginController created');
     var vm = this;
+
+    vm.calendarView = 'month';
+
+    vm.viewDate = new Date();
+
     vm.user = {
       username: '',
       password: ''
     };
     vm.message = '';
+
+    vm.CalendarService = CalendarService;
+
+    CalendarService.getPublicEvents();
 
     vm.login = function() {
       console.log('LoginController -- login');
@@ -17,7 +26,7 @@ myApp.controller('LoginController', function($http, $location, UserService) {
           if(response.data.username) {
             console.log('LoginController -- login -- success: ', response.data);
             // location works with SPA (ng-route)
-            $location.path('/user'); // http://localhost:5000/#/user
+            $location.path('/profile'); // http://localhost:5000/#/user
           } else {
             console.log('LoginController -- login -- failure: ', response);
             vm.message = "Wrong!!";
@@ -44,4 +53,6 @@ myApp.controller('LoginController', function($http, $location, UserService) {
         });
       }
     }
+
+    
 });

@@ -29,6 +29,30 @@ router.get('/', function (req, res) {
     });
 });
 
+router.get('/public', function (req, res) {
+
+    
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`SELECT "events"."title", "events"."color", "events"."starts_at", "events"."ends_at", "users_events"."id", "events"."id" AS "eventId", "users_events"."creator", "users_events"."accepted", "users_events"."denied", "users_events"."public", "users_events"."invited"
+            FROM "events" JOIN "users_events"
+            ON "events"."id" = "users_events"."event_id"
+            WHERE "users_events"."public" = 'true';`, function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(result.rows);
+                    }
+                });
+        }
+    });
+});
+
 router.get('/invites', function (req, res) {
 
     userId = req.user.id

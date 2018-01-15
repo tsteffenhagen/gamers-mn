@@ -6,6 +6,8 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
 
     self.eventInviteObjects = [];
 
+    self.publicEventObjects = [];
+
     self.eventSearch = "";
 
 
@@ -49,6 +51,33 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
         });
     };
 
+    self.getPublicEvents = function () {
+
+        self.publicEventObjects = [];
+        $http({
+            method: 'GET',
+            url: '/events/public'
+        }).then(function (response) {
+
+            console.log('PUBLIC EVENT RESPONSE', response);
+            for (let i = 0; i < response.data.length; i++) {
+                self.publicEventObjects.push({
+                    title: response.data[i].title,
+                    startsAt: new Date(response.data[i].starts_at),
+                    endsAt: new Date(response.data[i].ends_at),
+                    color: { primary: response.data[i].color },
+                    draggable: true,
+                    resizable: true,
+                    deleteId: response.data[i].id,
+                    editId: response.data[i].eventId
+                })
+
+            }
+            console.log(self.publicEventObjects);
+            
+            return self.publicEventObjects;
+        })
+    }
 
 
     self.getEvents = function () {
