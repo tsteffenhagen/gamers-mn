@@ -159,7 +159,6 @@ else {
 }
 });
 
-
 router.post('/invite', function (req, res) {
     var inviteInfo = req.body;
     console.log('IN INVITE', req.body);
@@ -169,18 +168,16 @@ router.post('/invite', function (req, res) {
             console.log('error', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-
-            console.log('IN INVITE', req.body);
-            client.query(`INSERT INTO users_events ("user_id", "event_id", "creator", "accepted", "denied", "public", "invited")
-            VALUES ($1, $2, 'false', 'false', 'false', 'false', 'true');`, [req.body.inviteId, req.body.editId],
-                function (errorMakingDatabaseQuery, result) {
+            for (let i = 0; i < req.body.invites.length; i++) {
+                client.query(`INSERT INTO users_events ("user_id", "event_id", "creator", "accepted", "denied", "public", "invited")
+                VALUES ($1, $2, 'false', 'false', 'false', 'false', 'true');`, [req.body.invites[i], req.body.editId],
+                function(errorMakingQuery, result) {
                     done();
-                    if (errorConnectingToDatabase) {
-                        res.sendStatus(500);
-                    } else {
-                        res.sendStatus(201);
+                    if (errorMakingQuery) {
+                        res.sendStatus(500)
                     }
-                })
+                });
+            }
         }
     })
 })

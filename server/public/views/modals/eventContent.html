@@ -19,44 +19,20 @@
         <br>
         <div class ="container">
             <div ng-repeat="user in vm.userArray.list">            
-                    <img class="img-circle text-center" src={{user.image_url}} id="displayPicture"><hr>
+                    <img class="img-circle text-center" src={{user.image_url}} id="displayPicture">
                     {{user.username}} 
-                    <input type="checkbox" name="user" checklist-model="vm.event.invites" checklist-value="user.id">
-                    <hr>
-            </div>
+                    <input type="checkbox" name="user" checklist-model="vm.event.invites" checklist-value="user.id"><br><br>
+                    
+            </div><br><br>
 
         </div>
-        <!-- <div class="container">
-        <div ng-repeat="user in vm.userArray.list" ng-if="$index % 3 == 0" class="row">
-            <div class="col-md-2">
-                <img class="img-circle text-center" src={{vm.userArray.list[$index].image_url}} id="displayPicture"><hr>
-                {{vm.userArray.list[$index].username}} 
-                <input type="checkbox" name="user" checklist-model="vm.event.invites" checklist-value="vm.userArray.list[index+2].id">
-                <hr>
-            </div>
-            <div class="col-md-2 img-circle">
-                <img class="img-circle text-center"  src={{vm.userArray.list[$index+1].image_url}} id="displayPicture"><hr>
-                {{vm.userArray.list[$index+1].username}}
-                <input type="checkbox" name="user" checklist-model="vm.event.invites" checklist-value="vm.userArray.list[index+2].id">
-                 <hr>
-            </div>
-            <div class="col-md-2 img-circle">
-                <img class="img-circle text-center"  src={{vm.userArray.list[$index+2].image_url}} id="displayPicture"><hr>
-                {{vm.userArray.list[$index+2].username}}
-                <input type="checkbox" name="user" checklist-model="vm.event.invites" checklist-value="vm.userArray.list[index+2].id]">
-                 <hr>
-            </div>
-                
-        </div><br>
-        
-        </div> -->
     </form>
 {{vm.event}}
 </div>
 <div class="modal-footer ">
     <div class="text-center">
     <div class="btn-group" role="group" aria-label="...">
-        <button class="btn btn-info" ng-click="vm.inviteUser(vm.event)">Invite User</button>
+        <button class="btn btn-info" ng-click="vm.inviteUser(vm.event)">Invite Users</button>
         <button class="btn btn-default" ng-click="vm.editEvent(vm.event)">Save Changes</button>
         <button class="btn btn-danger" ng-click="vm.deleteEvent(vm.event); $close()">Delete Event</button>
         <button class="btn btn-primary" ng-click="$close()">OK</button>

@@ -1,4 +1,4 @@
-myApp.controller('LoginController', function ($http, $location, UserService, CalendarService) {
+myApp.controller('LoginController', function ($http, $location, moment, alert, calendarConfig, UserService, CalendarService) {
   console.log('LoginController created');
   var vm = this;
 

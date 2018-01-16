@@ -37,7 +37,7 @@ router.get('/logout', function(req, res) {
 router.get('/userlist', function(req, res) {
   pool.connect(function(errorConnectingToDatabase, client, done) {
     if (errorConnectingToDatabase) {
-      console.log('errpr', errorConnectingToDatabase);
+      console.log('error', errorConnectingToDatabase);
       res.sendStatus(500);
           } else {
             client.query(`Select "username", "id", "image_url" FROM users WHERE id != ${req.user.id};`, function(errorMakingDatabaseQuery, result) {
