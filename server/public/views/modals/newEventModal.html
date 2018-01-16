@@ -1,11 +1,9 @@
 <div class="modal-header">
-    <h3 class="modal-title">Event action occurred!</h3>
+    <h3 class="modal-title">Add a New Event!</h3>
 </div>
 <div class="modal-body">
-    <p>Action:
-        <pre>New Event</pre>
-    </p>
-    <p>Event:
+
+   
         <div>
             Event Title:<br>
             <input type="text" ng-model="vm.newEvent.title">
@@ -25,9 +23,9 @@
              <input type="datetime-local" ng-model="vm.newEvent.endDateTime">
               <br>
               <br>
-              Post Event on Public Calendar:  <input type="checkbox" name="vehicle" ng-model="vm.newEvent.public"><br>
+              Post Event to Public Calendar:  <input type="checkbox" name="vehicle" ng-model="vm.newEvent.public"><br>
           </div>
-    </p>
+    {{vm.newEvent}}
 </div>
 <div class="modal-footer">
         <button type="button" class="btn btn-success" ng-click="vm.addNewEvent(vm.newEvent)">Submit Event</button>

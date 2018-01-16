@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module']);
+var myApp = angular.module('myApp', ['ngRoute', 'mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module', 'checklist-model']);
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {

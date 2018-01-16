@@ -142,7 +142,7 @@ router.post('/', function (req, res) {
             client.query(`WITH new_event AS (INSERT INTO events ("title", "color", "starts_at", "ends_at", "game_id")
             VALUES ($1, $2, $3, $4, $5) RETURNING id)            
             INSERT INTO users_events ("user_id", "event_id", "creator", "accepted", "denied", "public", "invited" )
-            VALUES ($6, (Select id FROM new_event), 'true', 'true', 'false', 'false', 'false');`, [newEvent.title, newEvent.color, newEvent.startDateTime, newEvent.endDateTime, newEvent.game.gameId, userId],
+            VALUES ($6, (Select id FROM new_event), 'true', 'true', 'false', $7, 'false');`, [newEvent.title, newEvent.color, newEvent.startDateTime, newEvent.endDateTime, newEvent.game.gameId, userId, newEvent.public],
                 function (errorMakingDatabaseQuery, result) {
                     done();
                     if (errorMakingDatabaseQuery) {

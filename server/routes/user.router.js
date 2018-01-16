@@ -40,7 +40,7 @@ router.get('/userlist', function(req, res) {
       console.log('errpr', errorConnectingToDatabase);
       res.sendStatus(500);
           } else {
-            client.query(`Select "username", "id", "image_url" FROM users;`, function(errorMakingDatabaseQuery, result) {
+            client.query(`Select "username", "id", "image_url" FROM users WHERE id != ${req.user.id};`, function(errorMakingDatabaseQuery, result) {
               if (errorMakingDatabaseQuery) {
                 console.log('error', errorMakingDatabaseQuery);
                 res.sendStatus(500);                
