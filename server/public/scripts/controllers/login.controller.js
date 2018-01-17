@@ -73,7 +73,7 @@ myApp.controller('LoginController', function ($http, $location, moment, alert, c
   vm.cellIsOpen = true;
 
   vm.eventClicked = function (event) {
-    alert.show('Clicked', event);
+    alert.show('HomePageClick', event);
   };
 
   vm.eventEdited = function (event) {

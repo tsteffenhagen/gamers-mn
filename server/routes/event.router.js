@@ -17,7 +17,8 @@ router.get('/', function (req, res) {
             ON "events"."id" = "users_events"."event_id"
             JOIN "games" ON "events"."game_id" = "games"."id" 
             WHERE "users_events"."user_id" = ${userId}
-            AND "users_events"."accepted" = 'true';`, function (errorMakingDatabaseQuery, result) {
+            AND "users_events"."accepted" = 'true'
+            ORDER BY starts_at ASC;`, function (errorMakingDatabaseQuery, result) {
                     done();
                     if (errorMakingDatabaseQuery) {
                         console.log('error', errorMakingDatabaseQuery);

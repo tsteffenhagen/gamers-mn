@@ -20,7 +20,7 @@ myApp.service('GameService', function ($http, $location) {
             console.log('response', response);
             self.gameArray.list = response.data;
         })
-        
+
     }
 
     self.getGameTypes = function () {
@@ -32,7 +32,7 @@ myApp.service('GameService', function ($http, $location) {
             console.log('response', response);
             self.gameTypeArray.list = response.data;
         })
-        
+
     }
 
     self.getGameCreators = function () {
@@ -44,11 +44,11 @@ myApp.service('GameService', function ($http, $location) {
             console.log('response', response);
             self.gameCreatorArray.list = response.data;
         })
-        
+
     }
 
     self.getGameCollection = function () {
-        
+
         $http({
             method: 'GET',
             url: '/games/gameCollection'
@@ -71,9 +71,10 @@ myApp.service('GameService', function ($http, $location) {
             newGame.gameType = '';
             newGame.gameCreator = '';
             newGame.players = '';
-            newGame.duration='';
-        })
-        self.getGames();
+            newGame.duration = '';
+            self.getGames();
+
+        });
     }
 
     self.addNewType = function (newType) {
@@ -88,7 +89,7 @@ myApp.service('GameService', function ($http, $location) {
             newType = '';
         })
     }
-    
+
     self.addNewCreator = function (newCreator) {
         console.log('in add new creator', newCreator);
 
@@ -110,7 +111,9 @@ myApp.service('GameService', function ($http, $location) {
             url: '/games/collections',
             data: game
         }).then(function (response) {
-            console.log('response', response);            
+            console.log('response', response);
+
+            self.getGameCollection();
         })
     }
 })

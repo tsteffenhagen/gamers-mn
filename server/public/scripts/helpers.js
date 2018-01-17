@@ -1,5 +1,5 @@
 myApp.service('alert', function ($uibModal, $http, $location) {
-
+  
   function show(action, event) {
     if (action === 'NewGameClicked') {
       return $uibModal.open({
@@ -11,7 +11,12 @@ myApp.service('alert', function ($uibModal, $http, $location) {
         templateUrl: '/views/modals/newEventModal.html',
         controller: 'NewEventController as vm'
       });
-    } else if (action === 'NewGameCreatorClicked') {
+    } else if (action === 'HomePageClick') {
+      return $uibModal.open({
+        templateUrl: '/views/modals/homePageModal.html',
+        controller: 'LoginController as vm'
+      });
+    }  else if (action === 'NewGameCreatorClicked') {
       return $uibModal.open({
         templateUrl: '/views/modals/newGameCreatorModal.html',
         controller: 'NewGameController as vm'

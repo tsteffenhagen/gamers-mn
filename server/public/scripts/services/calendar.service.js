@@ -73,11 +73,11 @@ myApp.service('CalendarService', function ($http, $location, filterFilter) {
 
             }
             console.log(self.publicEventObjects);
-            
+
             // return self.publicEventObjects;
         })
     }
-self.getPublicEvents();
+    self.getPublicEvents();
 
     self.getEvents = function () {
 
@@ -142,6 +142,7 @@ self.getPublicEvents();
             console.log('response', response);
             self.getEvents();
             self.criteriaChanged();
+            self.getPublicEvents();
             newEvent.title = '';
             newEvent.color = '';
             newEvent.month = '';
