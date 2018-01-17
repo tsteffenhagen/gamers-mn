@@ -10,15 +10,49 @@
         <br>
         <br>
         <div class="btn-group">
-        <button class="btn btn-success" ng-click="vm.uploadProfilePicture(userImage.imageUrl)">Upload Profile Image</button>
-        <button class="btn btn-danger" ng-click="vm.UserService.logout()">Log Out</button>
-    </div>
-        <hr>
-        <h3>Upcoming Games</h3>
-        <div ng-repeat="vm.CalendarService.eventObjects | limitTo:">
-
+            <button class="btn btn-success" ng-click="vm.uploadProfilePicture(userImage.imageUrl)">Upload Profile Image</button>
+            <button class="btn btn-danger" ng-click="vm.UserService.logout()">Log Out</button>
         </div>
         <hr>
+        <h3>Upcoming Games</h3>
+        <div ng-repeat="event in vm.CalendarService.eventObjects | limitTo: 3">
+            <a href="" ng-click="isCollapsed = !isCollapsed"> {{event.title}} </a>
+            <hr>
+            <div uib-collapse="!isCollapsed">
+                <!-- <div class="well well"> -->
+
+
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th>
+                                <strong>Game:</strong>
+                                <br>
+                                <i>{{event.name}}</i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <td>
+                            <strong>Starts At:</strong>
+                            <br>
+                            <i>{{event.startsAt | date:'MMM d, y h:mm a':'-0600'}}</i>
+                        </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <strong>Ends At:</strong>
+                                <br>
+                                <i>{{event.endsAt | date:'MMM d, y h:mm a':'-0600'}}</i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
     </div>
 
     <div class="col-md-8">
