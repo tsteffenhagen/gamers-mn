@@ -19,7 +19,7 @@
         <br>
         <div class ="container">
             <div ng-repeat="user in vm.userArray.list">            
-                    <img class="img-circle text-center" src={{user.image_url}} id="displayPicture">
+                    <img class="img-circle img-responsive" src={{user.image_url}} id="displayPicture">
                     {{user.username}} 
                     <input type="checkbox" name="user" checklist-model="vm.event.invites" checklist-value="user.id"><br><br>
                     
